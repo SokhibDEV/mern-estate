@@ -18,16 +18,18 @@ import {
   signOutUserStart,
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next"
 
 
-export default function Profile() {
+ export default function Profile() {
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
   const [updateSuccess, setUpdateSuccess] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({}); 
+  const { t } = useTranslation()
   const dispatch = useDispatch();
 
   // firebase stroge
@@ -118,7 +120,6 @@ export default function Profile() {
       dispatch(signOutUserStart());
       const res = await fetch("/api/auth/signout");
       const data = await res.json(res);
-      console.log(data);
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
         return;
@@ -130,7 +131,7 @@ export default function Profile() {
   };
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
+      <h1 className="text-3xl font-semibold text-center my-7">{t("profile")}</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           onChange={(e) => setFile(e.target.files[0])}
@@ -148,13 +149,12 @@ export default function Profile() {
         <p className="text-sm self-center">
           {fileUploadError ? (
             <span className="text-red-700">
-              {" "}
-              Error Image upload(image must be less than 2 mb){" "}
+              {t("imageserror4")}
             </span>
           ) : filePerc > 0 && filePerc < 100 ? (
-            <span className="text-slate-700">{`Uploading ${filePerc}`}</span>
+            <span className="text-slate-700">{`${t("uploading")} ${filePerc}`}</span>
           ) : filePerc === 100 ? (
-            <span className="text-green-700">Image seccessfully uploaded!</span>
+            <span className="text-green-700">{t("uploadSuccess")}</span>
           ) : (
             ""
           )}
@@ -162,7 +162,7 @@ export default function Profile() {
         <input
           id="username"
           type="text"
-          placeholder="username"
+          placeholder={t("username")}
           defaultValue={currentUser.username}
           className="border p-3 rounded-lg"
           onChange={handleChange}
@@ -170,7 +170,7 @@ export default function Profile() {
         <input
           id="email"
           type="email"
-          placeholder="email"
+          placeholder={t("email")}
           defaultValue={currentUser.email}
           className="border p-3 rounded-lg"
           onChange={handleChange}
@@ -178,7 +178,7 @@ export default function Profile() {
         <input
           id="password"
           type="password"
-          placeholder="password  "
+          placeholder={t("password")}
           className="border p-3 rounded-lg"
           onChange={handleChange}
         />
@@ -186,13 +186,13 @@ export default function Profile() {
           disabled={loading}
           className="bg-slate-700 rounded-lg text-white p-3 uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Loading..." : "Update"}
+          {loading ? `${t("loading")}...` : t("update")}
         </button>
         <Link
           className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95"
           to={"/create-listing"}
         >
-          Create Listing
+          {t("createlisting")}
         </Link>
       </form>
       <div className="flex justify-between mt-5">
@@ -200,16 +200,16 @@ export default function Profile() {
           onClick={handleDeleteUser}
           className="text-red-700 cursor-pointer"
         >
-          Delete account
+          {t("delete_account")}
         </span>
         <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
-          Sign Out
+          {t("sign_out")} 
         </span>
       </div>
 
       <p className="text-red-700 mt-5">{error ? error : ""}</p>
       <p className="text-green-700 mt-5">
-        {updateSuccess ? "User is updated successfully!" : ""}
+        {updateSuccess ? t("userUpdateSuccess") : ""}
       </p>
     </div>
   );
