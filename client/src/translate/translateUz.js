@@ -21,7 +21,7 @@ const translationsUz = {
     parking: "Avto Turargoh",
     furnished : "Mebel bilan jihozlangan",
     offer : "Taklif",
-    beds : "To'shaklar",
+    beds : "Yotoqxona",
     baths : "Vannalar",
     regularprice : "Muntazam narx",
     $month : "$ / oy",
@@ -34,10 +34,18 @@ const translationsUz = {
     update : "Yangilash",
     loading: "Yuklanmoqda",
     delete_account : "Hisobni o'chirish",
+    sign_in : "Kirish",
     sign_out : "Tizimdan chiqish",
     userUpdateSuccess : "Foydalanuvchi muvaffaqiyatli yangilandi!",
     unauthorized : "Ruxsatsiz!",
     forbidden : "Taqiqlangan",
+    password : "Parol",
+    continue_to_google : "Google orqali davom ettirish",
+    sign_up : "Ro'yxatdan o'tish",
+    dont_have_account : "Hisobingiz yo'qmi ?",
+    have_an_account : "Hisobingiz bormi ?",
+    
+
 
 }
 

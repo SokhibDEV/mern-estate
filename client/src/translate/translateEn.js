@@ -35,10 +35,16 @@
     update: "Update",
     loading: "Loading" ,
     delete_account : "Delete account",
+    sign_in : "Sign In",
     sign_out : "Sign Out",
     userUpdateSuccess : "User is updated successfully!",
     unauthorized : "Unauthorized",
     forbidden : "Forbidden",
+    password : "Password",
+    continue_to_google : "Continue with google",
+    sign_up : "Sign up",
+    dont_have_account : "Don't have an account ?",
+    have_an_account : "Have an account ?"
 
 }
 

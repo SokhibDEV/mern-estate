@@ -58,7 +58,7 @@ export default function Header({ changeLang }) {
                 alt="profile"
               />
             ) : (
-              <li className=" text-slate-700 hover:underline">Sign In</li>
+              <li className=" text-slate-700 hover:underline">{t("sign_in")}</li>
             )}
           </Link>
         </ul>

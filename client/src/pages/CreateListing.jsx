@@ -8,7 +8,7 @@ import {
 import { app } from "../firebase";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function CreateListing() {
   const { t } = useTranslation();
@@ -135,11 +135,13 @@ export default function CreateListing() {
         },
         body: JSON.stringify({
           ...formData,
-          useRef: currentUser._id,
+          userRef: currentUser._id,
         }),
       });
 
       const data = await res.json();
+      
+      
       setLoading(false);
       if (data.success === false) {
         setError(data.message);

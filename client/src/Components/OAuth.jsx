@@ -3,9 +3,13 @@ import { app } from '../firebase';
 import {  useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
 
 
 export default function OAuth() {
+
+    const { t }  = useTranslation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
   const handleGoogleClick = async () => {
@@ -36,7 +40,7 @@ export default function OAuth() {
       type="button"
       className="bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95"
     >
-      Continue with google
+      {t('continue_to_google')}
     </button>
   );
 }
